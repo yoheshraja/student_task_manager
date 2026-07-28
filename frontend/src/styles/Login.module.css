@@ -1,0 +1,32 @@
+.LoginContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.Logform{
+    background-color: rgb(133, 133, 133);
+    width: 300px;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.Logform input{
+    padding: 5px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    width: 270px;
+}
+.Logform button{
+    padding: 3px;
+    border: none;
+    cursor: pointer;
+    width: 90px;
+    margin: 10px;
+}

@@ -1,0 +1,51 @@
+.TaskContainer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    gap: 20px;
+}
+.TaskCard{
+    background-color: rgb(194, 255, 199);
+    width: 300px;
+    height: 350px;
+    border-radius: 10px;
+    padding: 10px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+.description{
+   
+    overflow-y: auto;
+    word-break: break-word;
+}
+
+.TaskFormContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+    background-color: rgba(6, 93, 253, 0.493);
+}
+.TaskForm{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+.TaskForm input,select{
+    height: 30px;
+    width: 300px;
+    cursor: pointer;
+}
+.TaskForm button{
+    height: 30px;
+}
+.BtnGroup{
+    display: flex;
+    justify-content: center;
+    gap:20px;
+}
+.PageBtn{
+    
+}

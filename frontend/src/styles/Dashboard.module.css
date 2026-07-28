@@ -1,0 +1,55 @@
+.profile{
+    height: 60px;
+    border: 1px solid black;
+    border-radius:50%;
+    width: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+}
+.profile img{
+    height: 60px;
+    width: 60px;
+     border-radius:50%;
+}
+.leftSection{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.opencard{
+    background-color: white;
+    height:400px;
+    width: 350px;
+    position: absolute;
+    left:80px;
+    top:15px;
+    border: 1px solid black;
+    border-radius: 10px; 
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    word-break: break-word;  
+}
+.Image{
+    height: 200px;
+    width:200px;
+    border-radius: 50px;
+    display: inline-block;
+    justify-content: center;
+}
+.Image img{
+    height: 200px;
+    width:200px;
+    border-radius: 10px;  
+}
+.notFound{
+    display: flex;
+    justify-content: center;
+    margin-top: 200px;
+}
+.DashboardMain{
+    background-color:rgb(252, 247, 247);
+}
