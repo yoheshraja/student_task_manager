@@ -5,13 +5,11 @@ import transporter from '../config/mail.js'
 export const sendTaskRemainder=async ()=>{
     try {
         const tasks=await taskModel.find({status:"pending",}).populate("userId");
-        console.log(tasks)
         for(const task  of tasks){
             const today=new Date();
             const dueDate=new Date(task.dueDate)
             const difference=dueDate-today
             const daysLeft=Math.ceil(difference/(1000*60*60*24))
-            console.log("title :",task.title ,"Days :", daysLeft)
 
             if (daysLeft===3 && !task.remainderSent.includes(3)) {
                 const info=await transporter.sendMail({
