@@ -8,6 +8,7 @@ import studentmodel from './database/student.js';
 import dbconnect from './database/db.js';
 import { taskRouter } from './router/taskRouter.js';
 import { authMiddleware } from './middlewares/authMiddleware.js';
+const PORT=process.env.PORT || 3000;
 const app=express();
 app.use(express.json());
 app.use(cors({
@@ -19,6 +20,6 @@ app.use("/api",userRouter);
 app.use("/uploads",express.static("uploads"));
 app.use("/api",taskRouter)
 dbconnect();
-app.listen(3000,"0.0.0.0",()=>{
+app.listen(PORT,"0.0.0.0",()=>{
     console.log("Server Running")
 })

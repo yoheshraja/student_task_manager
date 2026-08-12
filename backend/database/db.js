@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const dbconnect=()=>{
     try{
-        mongoose.connect("mongodb://localhost/Student_task_manager");
+        mongoose.connect(process.env.MONGO_URI);
         console.log("database connected")
     }
     catch(err){
