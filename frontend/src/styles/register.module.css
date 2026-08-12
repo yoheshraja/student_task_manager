@@ -6,19 +6,17 @@
 }
 .container{
     display: flex;
-    min-height: 100vh;
+    min-height: 105vh;
     justify-content: center;
     align-items: center;
     background-color: #f4f4f4;
-    
-    
 }
 .form{
     width: 400px;
     padding: 25px;
     background-color: #fff;
     border-radius:10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 5px 30px 15px gray;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -44,12 +42,20 @@
     padding: 10px;
     border: none;
     border-radius: 5px;
-    background-color: #007bff;
+    background-color: #2b92ff;
     color: white;
     font-size: 16px;
+    margin-bottom: 25px;
 }
 .btn:hover{
-    background-color:#0056b3;
+    background-color:#0d6ed6ea;
+}
+.DisplayMessage{
+    margin:0px;
+    text-align: center;
+}
+.HaveAccount{
+    text-align: center;
 }
 /* .heading{
    

@@ -5,12 +5,19 @@ import studentmodel from "../database/student.js";
 export const profileControl=async (req,res)=>{
     try {
         const {age,phone,address}=req.body;
+        if (!age || !phone || !address || !req.file) {
+            return res.status(400).json({
+                success:false,
+                message:"Fill All Fields"
+            })
+        }
     const profile=await profileModel.create({
         age,
         phone,
         address,
         profileImage:req.file.filename
     });
+   
     await studentmodel.findByIdAndUpdate(req.stud.id,{studentprofile:profile._id,profileCompleted:true},{new:true});
     res.status(200).json({
         success:true,
@@ -20,8 +27,7 @@ export const profileControl=async (req,res)=>{
     } catch (error) {
         res.status(500).json({
             success:false,
-            message:error.message,
-            stack:error.stack
+            message:"server error"
         })
     }
 } 

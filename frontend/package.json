@@ -10,7 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tsparticles/engine": "^4.3.2",
+    "@tsparticles/react": "^4.3.2",
+    "@tsparticles/slim": "^4.3.2",
     "axios": "^1.18.1",
+    "bootstrap": "^5.3.8",
     "multer": "^2.2.0",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",

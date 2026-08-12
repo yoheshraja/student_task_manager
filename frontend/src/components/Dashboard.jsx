@@ -10,39 +10,29 @@ import { useEffect } from 'react';
 function Dashboard() {
   // const location = useLocation();
   const Navigate = useNavigate();
-  const { user } = useContext(profileContext);
+  const { user,setUser } = useContext(profileContext);
   const [showCard, setShowCard] = useState(false);
   const [SearchParams, setSearchParams] = useSearchParams("");
-  const [searchList, setSearchList] = useState([]);
+  
   const ProfileCard = () => {
     setShowCard(!showCard);
   }
   const logout = () => {
     localStorage.removeItem("token")
-    setTimeout(() => { setUser(null); Navigate("/login") }, 1000)
+    setUser(null); 
+    Navigate("/login") ;
   }
-
-
-  const [search, setSearch] = useState("");
-  useEffect(()=>{
-     const Search_fun = async () => {
-    setSearchParams({ search });
-    try {
-      if (!search.trim()) {
-        return;
-      }
-      const getSearchData = await API.get(`/tasks/search?search=${search}`);
-      setSearchList(getSearchData.data.tasks)
-    } catch (error) {
-      alert(error.message)
-    }
-  }
-  Search_fun()
-  },[search])
- 
+    const [search, setSearch] = useState("");
+useEffect(()=>{
+ setSearchParams({
+  page:1,
+  limit:10,
+    ...(search && { search })
+ })
+},[search])
   return (
     <>
-      <nav className="navbar navbar-light bg-light">
+      <nav className={`navbar navbar-light bg-info ${styles.box}`}>
         <div className="container-fluid">
           <div className={styles.leftSection}>
             <div className={styles.profile}><img
@@ -52,11 +42,11 @@ function Dashboard() {
               <div className={styles.Image}>
                 <img src={`http://localhost:3000/uploads/${user?.studentprofile?.profileImage}`} alt="" />
               </div>
-              <p>Name:{user.name}</p>
-              <p>Email:{user.email}</p>
-              <p>Age:{user.studentprofile.age}</p>
-              <p>Address:{user.studentprofile.address}</p>
-              <button onClick={logout}>Logout</button>
+              <p>Name:{user?.name}</p>
+              <p>Email:{user?.email}</p>
+              <p>Age:{user?.studentprofile.age}</p>
+              <p>Address:{user?.studentprofile.address}</p>
+              <button className={styles.logout} onClick={logout}>Logout</button>
             </div>}
             <h2>welcome, {user?.name} </h2>
           </div>
@@ -66,6 +56,7 @@ function Dashboard() {
           </form>
         </div>
       </nav>
+      
       <div className={styles.DashboardMain} >
         {/* <p>{getSearchData.data.message}</p> */}
         {/* {searchList?searchList.map((task)=>(
@@ -78,15 +69,7 @@ function Dashboard() {
         )):<CrudTask/>} */}
 
         {/* {searchList.length===0?<p>Task Not Found</p>: */}
-        {search.trim()===""?<CrudTask />:
-        searchList.length > 0 ? searchList.map((task) => (
-          <div  key={task._id}>
-            <p>{task.title}</p>
-            <p>{task.description}</p>
-            <p>{task.dueDate}</p>
-            <p>{task.priority}</p>
-          </div>
-        )):<p className={styles.notFound}>Task Not Found</p> }
+        <CrudTask/>
       </div>
 
     </>

@@ -1,3 +1,8 @@
+.box{
+    position: sticky !important;
+    top: 0;
+    z-index: 2;
+}
 .profile{
     height: 60px;
     border: 1px solid black;
@@ -32,24 +37,32 @@
     display: flex;
     flex-direction: column;
     word-break: break-word;  
+    z-index: 1;
+}
+.opencard p{
+    margin: 3px 0px;
 }
 .Image{
-    height: 200px;
-    width:200px;
+    height: 150px;
+    width:100%;
     border-radius: 50px;
-    display: inline-block;
-    justify-content: center;
+    display: flex;
+    justify-content: center;   
 }
 .Image img{
-    height: 200px;
-    width:200px;
+    height: 150px;
+    width:150px;
+    object-fit:cover;
     border-radius: 10px;  
+}
+.logout{
+    width: 50%;
 }
 .notFound{
     display: flex;
     justify-content: center;
     margin-top: 200px;
 }
-.DashboardMain{
-    background-color:rgb(252, 247, 247);
-}
+/* .DashboardMain{
+    background-color:rgb(255, 150, 150);
+} */

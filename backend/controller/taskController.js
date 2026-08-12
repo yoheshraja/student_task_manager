@@ -30,14 +30,28 @@ export const taskController=async(req,res)=>{
 }
 
 export const updateController=async(req,res)=>{
-    const {title,description,dueDate,priority}=req.body; //how to handle many data in this line
-    const id=req.params.id;                             //why not use the middleware payload
-    const updatedData=await taskModel.findByIdAndUpdate(id,{
-        title:title,
-        description:description,
-        dueDate:dueDate,
-        priority:priority
-    },{new:true}) 
+    const {title,description,dueDate,priority,status}=req.body; //how to handle many data in this line
+    const id=req.params.id;                         
+    const fullData={}
+    if (title!==undefined) {
+        fullData.title=title
+    }
+    if (description!==undefined) {
+        fullData.description=description
+    }
+    if (dueDate!==undefined) {
+        fullData.dueDate=dueDate
+    }
+    if (priority!==undefined) {
+        fullData.priority=priority
+    }
+    if (status!==undefined) {
+        fullData.status=status
+    }
+    const updatedData=await taskModel.findOneAndUpdate(
+        {_id:id,userId:req.stud.id},
+        {$set:fullData},
+        {new:true,runValidators:true})
     res.json({
         success:true,
         message:"task updated successfully",

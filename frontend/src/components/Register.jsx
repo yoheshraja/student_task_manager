@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import styles from '../styles/register.module.css'
 import API from './api'
+import { useNavigate,Link } from 'react-router-dom'
 
 const Register = () => {
     const [reginfo,setReginfo]=useState({
@@ -10,6 +11,10 @@ const Register = () => {
         confirm_password:""
     })
     const [error,setError]=useState({});
+    const [Message,setMessage]=useState("");
+    const [serverError,setServerError]=useState("")
+    const [loading,setloading]=useState(false);
+    const Navigate=useNavigate();
     const validate=()=>{
         const newerrors={};
         if (!reginfo.name.trim()) {
@@ -39,15 +44,31 @@ const Register = () => {
             setError(validateError);
             return
          }
-         const res=await API.post("/register",reginfo)
-         console.log(res?.data?.message)
-         
+        try {
+            setloading(true)
+            const res=await API.post("/register",reginfo)
+            setMessage(res?.data?.message)
+            setReginfo({
+                name:"",
+                email:"",
+                password:"",
+                confirm_password:""
+            });
+            setTimeout(() => {
+                Navigate("/login")
+            }, 2000);
+        } catch (error) {
+            setServerError(error.res.data.message)
+        }finally{
+            setloading(false)
+        }
+           
         }
 
   return (
     <>
         <div className={styles.container}>
-            <form onSubmit={handlesubmit} className={styles.form}>
+            <form onSubmit={handlesubmit} className={styles.form}><Link to="/home">Home</Link>
                  <h2 className={styles.heading}>Register form</h2>
                 <input type="text" placeholder='Enter Name:' name="name"onChange={handlechange}/> 
                 <p className={styles.error}>{error.name}</p>
@@ -57,9 +78,10 @@ const Register = () => {
                 <p className={styles.error}>{error.password}</p>
                 <input type="password" placeholder='Enter Confirm Password:'name="confirm_password"onChange={handlechange}/>
                 <p className={styles.error}>{error.confirm_password}</p>
-                <button className={styles.btn}type="submit">Register</button>  
-                {/* {res?"register successfull":"Register"} */}
-            </form>
+                <button className={styles.btn}type="submit">{loading?"Loading...":"Register"}</button>
+                <p className={styles.HaveAccount}>Already Have Account <Link to={"/login"}>Login</Link></p>  
+                <span className={styles.DisplayMessage}>{Message?<span className='success'>{Message}</span>:<span className="error">{serverError}</span>}</span>
+            </form> 
         </div>
     </>
   )

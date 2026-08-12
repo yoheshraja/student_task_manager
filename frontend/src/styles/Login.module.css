@@ -4,29 +4,49 @@
     align-items: center;
     flex-direction: column;
     height: 100vh;
+    background-color: #f4f4f4
 }
 
 .Logform{
-    background-color: rgb(133, 133, 133);
+    background-color: #fff;
     width: 300px;
-    height: 250px;
+    height: 350px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     flex-direction: column;
+    border-radius: 5px;
+    box-shadow: 5px 30px 15px gray;
+    gap:10px;
 }
-
+.homeLink {
+    align-self: flex-start;
+    margin-top: 25px;
+    margin-left: 25px;
+}
 .Logform input{
     padding: 5px;
     margin: 5px;
     border: none;
     border-radius: 5px;
     width: 270px;
+    border: 1px solid #ccc;
 }
 .Logform button{
     padding: 3px;
     border: none;
     cursor: pointer;
-    width: 90px;
-    margin: 10px;
+    width: 90%;
+    margin:10px;
+    background-color: #2b92ff;  
+    border-radius: 5px; 
+}
+.Logform button:hover{
+    background-color: #0d6ed6ea;
+}
+.Logform p{
+    margin: 0px;
+}
+.DisplayInfo{
+    margin:0px;
 }

@@ -5,15 +5,49 @@ const gettask=async(req,res)=>{
     //  const pagination=req.query;
     const page=parseInt(req.query.page);
     const limit=parseInt(req.query.limit);
-    const totalTask=await taskModel.countDocuments({userId:req.stud.id});
+    const {search,sort,filter}=req.query;
     const skip=(page-1)*limit;
-    const getTask=await taskModel.find({userId:req.stud.id}).sort({dueDate:1}).skip(skip).limit(limit);
+    const query={userId:req.stud.id}
+    if(search){
+    query.title={$regex:search,$options:"i"}
+   }
+   if(filter){
+    query.priority=filter;
+   }
+  
+   let sortoption={};
+    switch (sort) {
+        case "asc":
+            sortoption={dueDate:1}
+            break;
+        case "desc":
+            sortoption={dueDate:-1}
+            break;
+        default:
+            sortoption={dueDate:1}
+            break;
+    }
+    const totalTask=await taskModel.countDocuments(query);
+    const getTask=await taskModel.find(query).sort(sortoption).skip(skip).limit(limit);
     const totalPage=Math.ceil(totalTask/limit);
+    
     const previous=page>1;
     const next=page<totalPage;
+    if (!getTask) {
+        res.status(404).json({
+            success:false,
+            message:"can't get task"
+        })
+    }
+    // if(getTask.length===0){
+    //     return res.status(404).json({
+    //     success:false,
+    //     message:"Task Not Found"
+    // })
+    // }
     res.status(200).json({
         success:true,
-        totalPage,totalTask,previous,next,getTask,page
+        totalPage,totalTask,previous,next,getTask,page,
     })
    } catch (error) {
     res.status(500).json({

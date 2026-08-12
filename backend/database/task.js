@@ -14,6 +14,15 @@ const taskSchema=new mongoose.Schema({
     priority:{
         type:String
     },
+    status:{
+        type:String,
+        enum:["pending","completed"],
+        default:"pending"
+    },
+    remainderSent:{
+        type:[Number],
+        default:[]
+    },
     userId:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"Student"

@@ -1,0 +1,53 @@
+.home {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+
+    background: linear-gradient(
+        135deg,
+        #0f172a,
+        #172554,
+        #312e81
+    );
+}
+
+.title {
+    position: relative;
+    z-index: 2;
+    color: white;
+    font-size: 48px;
+}
+
+.home canvas {
+    position: absolute !important;
+    inset: 0 !important;
+    z-index: 0 !important;
+}
+
+.authLinks {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    z-index: 2;
+
+    display: flex;
+    gap: 15px;
+}
+
+.authLinks a {
+    text-decoration: none;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 6px;
+    background-color: #2563eb;
+}
+
+.authLinks a:hover {
+    background-color: #1d4ed8;
+}

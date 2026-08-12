@@ -22,7 +22,7 @@ const logcontrol=async(req,res)=>{
         })
     }
     const token=jwt.sign(
-        {id:stud._id},process.env.JWT_SECRET,{expiresIn:"1h"}
+        {id:stud._id},process.env.JWT_SECRET,{expiresIn:"1d"}
     )
     res.status(200).json({
         success:true,
