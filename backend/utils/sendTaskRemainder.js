@@ -10,7 +10,6 @@ export const sendTaskRemainder=async ()=>{
             const dueDate=new Date(task.dueDate)
             const difference=dueDate-today
             const daysLeft=Math.ceil(difference/(1000*60*60*24))
-
             if (daysLeft===3 && !task.remainderSent.includes(3)) {
                 const info=await transporter.sendMail({
                     from:process.env.EMAIL_USER,

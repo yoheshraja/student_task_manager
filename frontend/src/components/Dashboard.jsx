@@ -36,11 +36,11 @@ useEffect(()=>{
         <div className="container-fluid">
           <div className={styles.leftSection}>
             <div className={styles.profile}><img
-              src={`http://localhost:3000/uploads/${user?.studentprofile?.profileImage}`} alt="Profile" onClick={ProfileCard} />
+              src={`https://student-task-manager-1w6u.onrender.com/uploads/${user?.studentprofile?.profileImage}`} alt="Profile" onClick={ProfileCard} />
             </div>
             {showCard && <div className={styles.opencard}>
               <div className={styles.Image}>
-                <img src={`http://localhost:3000/uploads/${user?.studentprofile?.profileImage}`} alt="" />
+                <img src={`https://student-task-manager-1w6u.onrender.com/uploads/${user?.studentprofile?.profileImage}`} alt="" />
               </div>
               <p>Name:{user?.name}</p>
               <p>Email:{user?.email}</p>
