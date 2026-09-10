@@ -1,74 +1,161 @@
-.TaskContainer{
+.TaskContainer {
     display: flex;
     flex-wrap: wrap;
     justify-content: start;
     gap: 20px;
     padding: 0 20px;
 }
-.TaskCard{
-    background-color: rgb(194, 255, 199);
+
+/* ===== CARD BASE STYLE ===== */
+.TaskCard {
+    background: #ffffff;
     width: 300px;
-    min-height:350px;
-    border-radius: 10px;
-    padding: 10px;
+    min-height: 220px;
+    border-radius: 14px;
+    padding: 18px;
+    padding-bottom: 60px; /* room for absolute button row */
     margin-left: 20px;
     margin-bottom: 20px;
-    /* display: flex;
-    flex-direction: column; */
     position: relative;
-}
-
-.TaskCard p{
-    margin: 0px;
-    line-height: 1.3;
-}
-.cardBtn{
-     position: absolute;
-    bottom: 15px;
-    left: 10px;
-    right: 10px;
-
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border: 1px solid #eef0f3;
     display: flex;
+    flex-direction: column;
     gap: 10px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
-.cardBtn .right{
-    margin-left: 10px;
+
+.TaskCard:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
-.cardBtn button{
-    width: 80px;
-    padding: 3px;
+
+.cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 8px;
 }
-.description{
+
+.TaskCard h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0;
+    word-break: break-word;
+}
+
+.description {
+    font-size: 14px;
+    color: #6b7280;
+    line-height: 1.4;
     word-break: break-word;
     overflow-wrap: break-word;
+    margin: 0;
 }
-/* 
-.TaskFormContainer{
+
+.cardMeta {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    height: 150px;
-    background-color: rgba(6, 93, 253, 0.493);
-   
+    font-size: 12px;
+    color: #6b7280;
+    margin-top: auto;
 }
-.TaskForm{
-    width: 100%;
+
+/* Priority badges */
+.priorityBadge {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+}
+.priorityBadge.low {
+    background: #dcfce7;
+    color: #166534;
+}
+.priorityBadge.medium {
+    background: #fef3c7;
+    color: #92400e;
+}
+.priorityBadge.high {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+/* Status badges */
+.statusBadge {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 20px;
+    text-transform: capitalize;
+}
+.statusBadge.completed {
+    background: #dbeafe;
+    color: #1e40af;
+}
+.statusBadge.pending {
+    background: #f3f4f6;
+    color: #4b5563;
+}
+
+/* ===== ACTION BUTTONS ===== */
+.cardBtn {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
     display: flex;
-    justify-content: space-evenly;
-    
+    gap: 8px;
 }
-.TaskForm textarea{
-    resize: none;
-}
-.TaskForm input,select{
-    height: 30px;
-    width: 300px;
+
+.cardBtn button {
+    flex: 1;
+    min-width: 0;
+    padding: 8px 4px;
+    font-size: 12px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
     cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.15s, transform 0.1s;
 }
-.TaskForm button{
-    height: 30px;
-} */
- .TaskFormContainer {
+
+.cardBtn button:active {
+    transform: scale(0.96);
+}
+
+/* Update button (default, first button) */
+.cardBtn button:first-child {
+    background: #e0e7ff;
+    color: #3730a3;
+}
+.cardBtn button:first-child:hover {
+    background: #c7d2fe;
+}
+
+.deleteBtn {
+    background: #fee2e2;
+    color: #991b1b;
+}
+.deleteBtn:hover {
+    background: #fecaca;
+}
+
+.completeBtn {
+    background: #dcfce7;
+    color: #166534;
+}
+.completeBtn:hover {
+    background: #bbf7d0;
+}
+
+/* ===== TASK FORM ===== */
+.TaskFormContainer {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -166,6 +253,8 @@
 .TaskForm button:active {
     transform: scale(0.97);
 }
+
+/* ===== PAGINATION ===== */
 .BtnGroup {
     display: flex;
     justify-content: center;
@@ -185,101 +274,44 @@
     background-color: #eee;
 }
 
-/* Current page */
 .BtnGroup .activePage {
     background-color: rgb(110, 255, 122);
     color: white;
-    border-color:rgb(110, 255, 122);
+    border-color: rgb(110, 255, 122);
     font-weight: bold;
 }
-.PageBtn{
-    
-}
 
-.box{
+/* ===== FILTER / SORT BAR ===== */
+.box {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     height: 120px;
     position: relative;
 }
-.DisplayInfo{
+
+.DisplayInfo {
     position: fixed;
     top: 70px;
     right: 20px;
     z-index: 1000;
-  
 }
-.loading{
+
+.loading {
     display: flex;
     justify-content: center;
 }
-.spinnerContainer{
+
+.spinnerContainer {
     width: 100%;
     display: flex;
     justify-content: center;
     min-height: 300px;
     align-items: center;
 }
-/* 
-@media (min-width:319px) and (max-width:620px){
-    .box{
-        flex-wrap: wrap;
-        height: 240px;
-    }
-    .TaskFormContainer{
-        height: 300px;
-    }
-    .TaskForm{
-        flex-wrap: wrap;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-    .TaskForm input,select,textarea{
-        margin: 10px;
-    }
- .TaskContainer{
-    justify-content: center;
- }
-    .TaskCard{
-        margin-left: 0;
-        margin-right: 0;
-        width: 90% !important;
-        height: auto;
-    }
-    .TaskCard p{
-        line-height: 1.2;
-    }
-    .TaskCard h3{
-        font-size: 20px;
-    }
 
-    .cardBtn {
-        position: absolute;
-        bottom: 10px;
-        left: 8px;
-        right: 8px;
-        display: flex;
-        gap: 6px;
-    }
-
-    .cardBtn button {
-        flex: 1;
-        min-width: 0;
-        padding: 4px 2px;
-        font-size: 11px;
-        white-space: nowrap;
-        text-align: center;
-        border-radius: 4px;
-    }
-
-    .cardBtn .right {
-        margin-left: 0; 
-    }
-} */
- @media (min-width: 319px) and (max-width: 620px) {
+/* ===================== MOBILE: 319px - 620px ===================== */
+@media (min-width: 319px) and (max-width: 620px) {
     .TaskFormContainer {
         padding: 20px 12px;
     }
@@ -299,88 +331,68 @@
         width: 100%;
         margin: 4px 0 0 0;
     }
-    .box{
+
+    .box {
         flex-wrap: wrap;
         height: 240px;
     }
-    .TaskCard{
+
+    .TaskContainer {
+        justify-content: center;
+    }
+
+    .TaskCard {
         margin-left: 0;
         margin-right: 0;
         width: 90% !important;
-        height: auto;
+        min-height: auto;
+        padding-bottom: 60px;
     }
-    .cardBtn {
-        position: absolute;
-        bottom: 10px;
-        left: 8px;
-        right: 8px;
-        display: flex;
-        gap: 6px;
+    .TaskCard h3 {
+        font-size: 16px;
     }
 
     .cardBtn button {
-        flex: 1;
-        min-width: 0;
-        padding: 4px 2px;
         font-size: 11px;
-        white-space: nowrap;
-        text-align: center;
-        border-radius: 4px;
+        padding: 7px 2px;
     }
-
-    .cardBtn .right {
-        margin-left: 0; 
-    }
-    /* ...keep your existing .box, .TaskCard, .cardBtn rules below this */
 }
-@media (min-width:621px) and (max-width:1024px){
-    .TaskFormContainer{
+
+/* ===================== TABLET: 621px - 1024px ===================== */
+@media (min-width: 621px) and (max-width: 1024px) {
+    .TaskFormContainer {
         height: 300px;
     }
-    /* .TaskForm{
-        flex-wrap: wrap;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-    .TaskForm input,select,textarea{
-        margin: 10px;
-    } */
-     .TaskForm{
+    .TaskForm {
         display: grid;
-        grid-template-columns:repeat(2,1fr);
+        grid-template-columns: repeat(2, 1fr);
         justify-items: center;
-     }
-      .TaskForm button {
+    }
+    .TaskForm button {
         grid-column: 1 / 3;
         justify-self: center;
         margin: 20px;
         height: 40px;
         width: 30%;
     }
-    .TaskContainer{
-     justify-content: center;
+
+    .TaskContainer {
+        justify-content: center;
     }
-    .TaskCard{
+
+    .TaskCard {
         margin-left: 10px;
         width: 45%;
-        height: auto;
     }
-    .TaskCard p{
-        line-height: 1.2;
-    }
-    .TaskCard h3{
-        font-size: 23px;
-    }
-     .DisplayInfo {
+
+    .DisplayInfo {
         top: 60px;
         right: 10px;
     }
 }
-/* 1025–1142: 2 cards */
-@media (min-width: 1025px) and (max-width: 1142px) {
 
+/* ===================== 1025px - 1142px: 2 cards per row ===================== */
+@media (min-width: 1025px) and (max-width: 1142px) {
     .TaskContainer {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -392,13 +404,10 @@
         width: auto;
         margin: 0;
     }
-
 }
 
-
-/* 1143+: 4 cards */
+/* ===================== 1143px+: 4 cards per row ===================== */
 @media (min-width: 1143px) {
-
     .TaskContainer {
         display: grid;
         grid-template-columns: repeat(4, 1fr);

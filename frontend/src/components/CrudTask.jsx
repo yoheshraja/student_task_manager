@@ -24,13 +24,13 @@ function CrudTask() {
     const [next, setNext] = useState(true);
     const [taskList, setTaskList] = useState([]);
     const [editId, setEditId] = useState(null);
-    const updateParams=(newparams)=>{
+    const updateParams = (newparams) => {
         setSearchParams({
-            page:newparams.page ?? 1,
-            limit:newparams.limit ?? 10,
-            ...(newparams.search && {search:newparams.search}),
-            ...(newparams.sort && {sort:newparams.sort}),
-            ...(newparams.filter && {filter:newparams.filter})
+            page: newparams.page ?? 1,
+            limit: newparams.limit ?? 10,
+            ...(newparams.search && { search: newparams.search }),
+            ...(newparams.sort && { sort: newparams.sort }),
+            ...(newparams.filter && { filter: newparams.filter })
         })
     }
     useEffect(() => {
@@ -56,7 +56,7 @@ function CrudTask() {
         try {
             const res = await API.post("/tasks", task);
             setMessage(res.data?.message)
-            setTask({                      
+            setTask({
                 title: "",
                 description: "",
                 dueDate: "",
@@ -84,12 +84,12 @@ function CrudTask() {
     }
     const updateTask = async (e) => {
         e.preventDefault();
-     window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
         try {
             const res = await API.put(`/tasks/update/${editId}`, task);
             setMessage(res.data.message)
-            setTaskList(prev =>prev.map(item =>item._id === editId? res.data.updatedData: item));
-            setTask({                      
+            setTaskList(prev => prev.map(item => item._id === editId ? res.data.updatedData : item));
+            setTask({
                 title: "",
                 description: "",
                 dueDate: "",
@@ -118,32 +118,32 @@ function CrudTask() {
             setError(error?.res?.data?.message)
         }
     }
-    const handleComplete=async(id)=>{
-       try {
-            const res=await API.put(`/tasks/update/${id}`,{
-                status:"completed"
+    const handleComplete = async (id) => {
+        try {
+            const res = await API.put(`/tasks/update/${id}`, {
+                status: "completed"
             })
             setMessage(res?.data?.message)
             //  setTaskList((prev) => [...prev, res.data.saveTask])
             setTaskList((prev) =>
-            prev.map((task) =>
-            task._id === id
-            ? { ...task, status: res.data.updatedData.status }
-            : task
-        )
-    );
+                prev.map((task) =>
+                    task._id === id
+                        ? { ...task, status: res.data.updatedData.status }
+                        : task
+                )
+            );
         } catch (error) {
             setError(error?.response.data.message)
         }
     }
-    const handleCancel=()=>{
-        setTask({                      
-                title: "",
-                description: "",
-                dueDate: "",
-                priority: "",
-            });
-            setEditId(null)
+    const handleCancel = () => {
+        setTask({
+            title: "",
+            description: "",
+            dueDate: "",
+            priority: "",
+        });
+        setEditId(null)
     }
     const Previous = () => {
         if (page > 1) {
@@ -162,18 +162,18 @@ function CrudTask() {
                 page: page + 1,
                 limit,
                 search,
-                sort, 
+                sort,
                 filter
             })
         }
     }
     return (
         <>
-        <span className={styles.DisplayInfo}>{Message ? <span className='alert alert-success'>{Message}</span> : <span className='alert alert-error'>{error}</span>}</span>
+            <span className={styles.DisplayInfo}>{Message ? <span className='alert alert-success'>{Message}</span> : <span className='alert alert-error'>{error}</span>}</span>
             <div className={styles.box}>
                 <div>
                     <form action=""><h3>SORT</h3>
-                        <select name="sort" value={sort} onChange={(e) => updateParams({ page: 1, limit, search, sort: e.target.value,filter })}>
+                        <select name="sort" value={sort} onChange={(e) => updateParams({ page: 1, limit, search, sort: e.target.value, filter })}>
                             <option value="">Select Filter</option>
                             <option value="asc">Assending</option>
                             <option value="desc">Dessending</option>
@@ -185,18 +185,6 @@ function CrudTask() {
                         <option value="">Select Filter</option>
                         <option value="low">low</option>
                         <option value="medium">medium</option>
-                        <option value="high">high</option>
-                    </select>
-                </form>
-            </div>
-            <div className={styles.TaskFormContainer}>
-                <form onSubmit={editId ? updateTask : handleSubmit} className={styles.TaskForm} >
-                    <input type="text" placeholder='Enter title:' name="title" value={task.title} onChange={handleChange} />
-                    <div className="discriptionField"><textarea rows={3} cols={36} maxLength={200} type="text" placeholder='Enter description:' name="description" value={task.description} onChange={handleChange}></textarea><p className={styles.desCount}>{task.description.length}/200</p></div>
-                    <input type="date" name="dueDate" value={task.dueDate} onChange={handleChange} />
-                    <select name="priority" value={task.priority} onChange={handleChange}>
-                        <option value="">select priority</option>
-                        <option value="low">low</option>
                         <option value="medium">medium</option>
                         <option value="high">high</option>
                     </select>
@@ -208,24 +196,28 @@ function CrudTask() {
             {/* task cards */}
             <div>
                 <h4>Tasks</h4>
-                <div className={`${styles.TaskContainer} ${
-                taskList.length % 4 === 2 ? styles.twoLastCards : ""}`}>
+                <div className={`${styles.TaskContainer} ${taskList.length % 4 === 2 ? styles.twoLastCards : ""}`}>
                     {/* <div className={styles.loading}><p>Loading...</p></div> */}
                     {loading ? (<div className={styles.spinnerContainer}><div className="spinner-border" role="status">
                         <span className="visually-hidden">Loading...</span>
-                    </div></div>) :taskList.length===0?<p>Task Not Found</p>: taskList.map((e) => (
+                    </div></div>) : taskList.length === 0 ? <p>Task Not Found</p> : taskList.map((e) => (
                         <div className={styles.TaskCard} key={e._id}>
-                            <h3>Ttile:{e.title}</h3>
-                            <p className={styles.description}>Description:{e.description}</p>
-                            <p>DueDate:{e.dueDate.split("T")[0]}</p>
-                            <p>Priority:{e.priority}</p>
-                            <p>status:{e.status}</p>
-                            <div className={styles.cardBtn}>
-                                <button onClick={() => handleUpdate(e)}>update</button>
-                                <button onClick={() => handleDelete(e._id)} className={styles.right}>Delete</button>
-                                <button onClick={()=>handleComplete(e._id)}className={styles.right}>Completed</button>
+                            <div className={styles.cardHeader}>
+                                <h3>{e.title}</h3>
+                                <span className={`${styles.priorityBadge} ${styles[e.priority]}`}>{e.priority}</span>
                             </div>
-                            <br />
+                            <p className={styles.description}>{e.description}</p>
+                            <div className={styles.cardMeta}>
+                                <span>📅 {e.dueDate.split("T")[0]}</span>
+                                <span className={`${styles.statusBadge} ${e.status === "completed" ? styles.completed : styles.pending}`}>
+                                    {e.status}
+                                </span>
+                            </div>
+                            <div className={styles.cardBtn}>
+                                <button onClick={() => handleUpdate(e)}>Update</button>
+                                <button onClick={() => handleDelete(e._id)} className={styles.deleteBtn}>Delete</button>
+                                <button onClick={() => handleComplete(e._id)} className={styles.completeBtn}>Done</button>
+                            </div>
                         </div>
                     ))}
                 </div>
@@ -236,7 +228,7 @@ function CrudTask() {
                         <button
                             key={index}
                             className={page === index + 1 ? styles.activePage : ""}
-                            onClick={() => { updateParams({page: index + 1, limit: 10,search,sort,filter }) }}
+                            onClick={() => { updateParams({ page: index + 1, limit: 10, search, sort, filter }) }}
                         >{index + 1}</button>
                     ))}
                     <button onClick={Next} disabled={!next}>next</button>
