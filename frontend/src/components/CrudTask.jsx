@@ -56,7 +56,7 @@ function CrudTask() {
         try {
             const res = await API.post("/tasks", task);
             setMessage(res.data?.message)
-            setTask({                       //efficient code ?
+            setTask({                      
                 title: "",
                 description: "",
                 dueDate: "",
@@ -84,12 +84,20 @@ function CrudTask() {
     }
     const updateTask = async (e) => {
         e.preventDefault();
+     window.scrollTo({ top: 0, behavior: 'smooth' });
         try {
             const res = await API.put(`/tasks/update/${editId}`, task);
             setMessage(res.data.message)
             setTaskList(prev =>prev.map(item =>item._id === editId? res.data.updatedData: item));
+            setTask({                      
+                title: "",
+                description: "",
+                dueDate: "",
+                priority: "",
+            });
+            setEditId(null)
         } catch (error) {
-            setError(error?.res?.data?.message)
+            setError(error?.response?.data?.message)
         }
     }
     const handleUpdate = (editTask) => {
@@ -127,6 +135,15 @@ function CrudTask() {
         } catch (error) {
             setError(error?.response.data.message)
         }
+    }
+    const handleCancel=()=>{
+        setTask({                      
+                title: "",
+                description: "",
+                dueDate: "",
+                priority: "",
+            });
+            setEditId(null)
     }
     const Previous = () => {
         if (page > 1) {
@@ -184,6 +201,7 @@ function CrudTask() {
                         <option value="high">high</option>
                     </select>
                     {<button>{editId ? "Update" : "Submit"}</button>}
+                    {editId && (<button onClick={handleCancel}>Cancel</button>)}
                 </form>
             </div>
             {/* {!search && (setError(getTask.res?.data?.message))} */}

@@ -1,4 +1,4 @@
-.home {
+/* .home {
     position: relative;
     width: 100%;
     min-height: 100vh;
@@ -50,4 +50,114 @@
 
 .authLinks a:hover {
     background-color: #1d4ed8;
+} */
+ .home {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+
+    background: linear-gradient(
+        135deg,
+        #0f172a,
+        #172554,
+        #312e81
+    );
+}
+
+.title {
+    position: relative;
+    z-index: 2;
+    color: white;
+    font-size: 48px;
+    text-align: center;
+    padding: 0 16px;
+}
+
+.home canvas {
+    position: absolute !important;
+    inset: 0 !important;
+    z-index: 0 !important;
+}
+
+.authLinks {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    z-index: 2;
+
+    display: flex;
+    gap: 15px;
+}
+
+.authLinks a {
+    text-decoration: none;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 6px;
+    background-color: #2563eb;
+    font-size: 15px;
+    white-space: nowrap;
+}
+
+.authLinks a:hover {
+    background-color: #1d4ed8;
+}
+
+/* Tablets */
+@media (min-width: 621px) and (max-width: 1024px) {
+    .title {
+        font-size: 38px;
+    }
+
+    .authLinks {
+        top: 24px;
+        right: 24px;
+        gap: 12px;
+    }
+
+    .authLinks a {
+        padding: 7px 14px;
+        font-size: 14px;
+    }
+}
+
+/* Mobile */
+@media (min-width: 319px) and (max-width: 620px) {
+    .title {
+        font-size: 26px;
+        margin-top: 60px; /* clears the auth links stacked above on small screens */
+    }
+
+    .authLinks {
+        top: 16px;
+        right: 16px;
+        left: 16px;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .authLinks a {
+        flex: 1;
+        text-align: center;
+        padding: 8px 10px;
+        font-size: 13px;
+    }
+}
+
+/* Very small phones */
+@media (max-width: 360px) {
+    .title {
+        font-size: 22px;
+    }
+
+    .authLinks a {
+        font-size: 12px;
+        padding: 7px 8px;
+    }
 }

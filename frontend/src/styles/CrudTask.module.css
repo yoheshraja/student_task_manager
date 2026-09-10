@@ -42,7 +42,7 @@
     word-break: break-word;
     overflow-wrap: break-word;
 }
-
+/* 
 .TaskFormContainer{
     display: flex;
     justify-content: center;
@@ -67,6 +67,104 @@
 }
 .TaskForm button{
     height: 30px;
+} */
+ .TaskFormContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 20px;
+    background: linear-gradient(135deg, #4f6ef7, #6a8dff);
+}
+
+.TaskForm {
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 16px;
+    background: #fff;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.TaskForm input,
+.TaskForm select,
+.TaskForm textarea {
+    height: 42px;
+    width: 220px;
+    padding: 0 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.TaskForm textarea {
+    height: auto;
+    padding: 10px 12px;
+    resize: none;
+}
+
+.TaskForm input:focus,
+.TaskForm select:focus,
+.TaskForm textarea:focus {
+    border-color: #4f6ef7;
+    box-shadow: 0 0 0 3px rgba(79, 110, 247, 0.15);
+}
+
+.TaskForm select {
+    cursor: pointer;
+    background: #fff;
+}
+
+.discriptionField {
+    display: flex;
+    flex-direction: column;
+    width: 220px;
+}
+
+.desCount {
+    align-self: flex-end;
+    font-size: 11px;
+    color: #888;
+    margin: 4px 2px 0 0;
+}
+
+.TaskForm button {
+    height: 42px;
+    padding: 0 22px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+}
+
+.TaskForm button:first-of-type {
+    background: #4f6ef7;
+    color: #fff;
+}
+
+.TaskForm button:first-of-type:hover {
+    background: #3d5ce0;
+}
+
+.TaskForm button:last-of-type {
+    background: #f1f2f6;
+    color: #333;
+}
+
+.TaskForm button:last-of-type:hover {
+    background: #e2e4ea;
+}
+
+.TaskForm button:active {
+    transform: scale(0.97);
 }
 .BtnGroup {
     display: flex;
@@ -123,7 +221,7 @@
     min-height: 300px;
     align-items: center;
 }
-
+/* 
 @media (min-width:319px) and (max-width:620px){
     .box{
         flex-wrap: wrap;
@@ -157,23 +255,83 @@
     .TaskCard h3{
         font-size: 20px;
     }
-    /* .cardBtn button{
-    width: 50px;
-    padding: 1.5px;
+
+    .cardBtn {
+        position: absolute;
+        bottom: 10px;
+        left: 8px;
+        right: 8px;
+        display: flex;
+        gap: 6px;
     }
-    .cardBtn{
-    position: absolute;
-    top: 85%;
-    } */
-    /* .TaskForm input,select{
-    height: 30px;
-    width: 300px;
-    cursor: pointer;
-    margin: 10px;
+
+    .cardBtn button {
+        flex: 1;
+        min-width: 0;
+        padding: 4px 2px;
+        font-size: 11px;
+        white-space: nowrap;
+        text-align: center;
+        border-radius: 4px;
     }
-    .TaskForm button{
-    height: 25px;
-    } */
+
+    .cardBtn .right {
+        margin-left: 0; 
+    }
+} */
+ @media (min-width: 319px) and (max-width: 620px) {
+    .TaskFormContainer {
+        padding: 20px 12px;
+    }
+    .TaskForm {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 20px;
+        gap: 12px;
+    }
+    .TaskForm input,
+    .TaskForm select,
+    .discriptionField {
+        width: 100%;
+        margin: 0;
+    }
+    .TaskForm button {
+        width: 100%;
+        margin: 4px 0 0 0;
+    }
+    .box{
+        flex-wrap: wrap;
+        height: 240px;
+    }
+    .TaskCard{
+        margin-left: 0;
+        margin-right: 0;
+        width: 90% !important;
+        height: auto;
+    }
+    .cardBtn {
+        position: absolute;
+        bottom: 10px;
+        left: 8px;
+        right: 8px;
+        display: flex;
+        gap: 6px;
+    }
+
+    .cardBtn button {
+        flex: 1;
+        min-width: 0;
+        padding: 4px 2px;
+        font-size: 11px;
+        white-space: nowrap;
+        text-align: center;
+        border-radius: 4px;
+    }
+
+    .cardBtn .right {
+        margin-left: 0; 
+    }
+    /* ...keep your existing .box, .TaskCard, .cardBtn rules below this */
 }
 @media (min-width:621px) and (max-width:1024px){
     .TaskFormContainer{
