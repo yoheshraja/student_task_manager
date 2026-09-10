@@ -6,10 +6,9 @@ import { BrowserRouter,Routes,Route,Link } from 'react-router-dom'
 import Protected from './components/Protected'
 import Profile from './components/Profile'
 import Home from './components/Home'
-import './App.css';
 function App() {
   return (
-    <div className="appWrapper">
+    <>
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Home/>}/>
@@ -21,7 +20,7 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
-    </div>
+    </>
   )
 }
 

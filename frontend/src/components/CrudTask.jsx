@@ -207,7 +207,7 @@ function CrudTask() {
             {/* {!search && (setError(getTask.res?.data?.message))} */}
             {/* task cards */}
             <div>
-                <h4>Tasks</h4>
+                <h4 style={{marginLeft:"20px"}}>Tasks</h4>
                 <div className={`${styles.TaskContainer} ${taskList.length % 4 === 2 ? styles.twoLastCards : ""}`}>
                     {/* <div className={styles.loading}><p>Loading...</p></div> */}
                     {loading ? (<div className={styles.spinnerContainer}><div className="spinner-border" role="status">

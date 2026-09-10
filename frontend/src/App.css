@@ -1,6 +1,0 @@
-.appWrapper {
-    max-width: 1400px;   /* optional: caps content width on huge screens */
-    margin: 0 auto;       /* centers it */
-    padding-left: 24px;   /* left space */
-    padding-right: 24px;  /* keep right side matching too */
-}
