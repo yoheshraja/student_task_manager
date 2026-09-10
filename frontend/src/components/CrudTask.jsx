@@ -185,6 +185,18 @@ function CrudTask() {
                         <option value="">Select Filter</option>
                         <option value="low">low</option>
                         <option value="medium">medium</option>
+                        <option value="high">high</option>
+                    </select>
+                </form>
+            </div>
+            <div className={styles.TaskFormContainer}>
+                <form onSubmit={editId ? updateTask : handleSubmit} className={styles.TaskForm} >
+                    <input type="text" placeholder='Enter title:' name="title" value={task.title} onChange={handleChange} />
+                    <div className={styles.discriptionField}><textarea rows={3} cols={36} maxLength={200} type="text" placeholder='Enter description:' name="description" value={task.description} onChange={handleChange}></textarea><p className={styles.desCount}>{task.description.length}/200</p></div>
+                    <input type="date" name="dueDate" value={task.dueDate} onChange={handleChange} />
+                    <select name="priority" value={task.priority} onChange={handleChange}>
+                        <option value="">select priority</option>
+                        <option value="low">low</option>
                         <option value="medium">medium</option>
                         <option value="high">high</option>
                     </select>
