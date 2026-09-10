@@ -84,7 +84,6 @@ function CrudTask() {
     }
     const updateTask = async (e) => {
         e.preventDefault();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
         try {
             const res = await API.put(`/tasks/update/${editId}`, task);
             setMessage(res.data.message)
@@ -108,6 +107,8 @@ function CrudTask() {
             priority: editTask.priority
         })
         setEditId(editTask._id)
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
     }
     const handleDelete = async (id) => {
         try {
@@ -207,7 +208,7 @@ function CrudTask() {
             {/* {!search && (setError(getTask.res?.data?.message))} */}
             {/* task cards */}
             <div>
-                <h4 style={{marginLeft:"20px"}}>Tasks</h4>
+                <h4 style={{margin:"13px"}}>Tasks</h4>
                 <div className={`${styles.TaskContainer} ${taskList.length % 4 === 2 ? styles.twoLastCards : ""}`}>
                     {/* <div className={styles.loading}><p>Loading...</p></div> */}
                     {loading ? (<div className={styles.spinnerContainer}><div className="spinner-border" role="status">

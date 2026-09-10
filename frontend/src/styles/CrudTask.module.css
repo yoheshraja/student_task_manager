@@ -164,6 +164,7 @@ body {
     justify-content: center;
     align-items: center;
     padding: 30px 20px;
+    margin: 10px;
     background: linear-gradient(135deg, #4f6ef7, #6a8dff);
 }
 
