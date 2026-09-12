@@ -40,12 +40,15 @@ useEffect(()=>{
             </div>
             {showCard && <div className={styles.opencard}>
               <div className={styles.Image}>
-                src={user?.studentprofile?.profileImage} alt="" />
+                    <img
+                    src={user?.studentprofile?.profileImage}
+                      alt="Profile"
+                      />
               </div>
               <p>Name:{user?.name}</p>
               <p>Email:{user?.email}</p>
-              <p>Age:{user?.studentprofile.age}</p>
-              <p>Address:{user?.studentprofile.address}</p>
+              <p>Age:{user?.studentprofile?.age}</p>
+              <p>Address:{user?.studentprofile?.address}</p>
               <button className={styles.logout} onClick={logout}>Logout</button>
             </div>}
             <h2>welcome, {user?.name} </h2>
